@@ -35,7 +35,7 @@ A simple and clean **Employee Management System** built with **Ruby on Rails**. 
 
 ```bash
 # Step 1: Clone the repository
-git clone https://github.com/your-username/EMS_ROR_Project_1.git
+git clone https://github.com/ashish-ranjan-profile/EMS_ROR_Project_1.git
 
 # Step 2: Navigate into the project directory
 cd EMS_ROR_Project_1
