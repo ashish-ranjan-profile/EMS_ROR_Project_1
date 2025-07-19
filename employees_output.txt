@@ -1,0 +1,27 @@
+-[ RECORD 1 ]-+-------------------------------------------------------------------------------
+id            | 6
+first_name    | Asif
+last_name     | Kumar
+email         | asifkumar420@gmail.com
+mobile_num    | 8892563415
+city          | Muzaffarpur
+state         | Bihar
+pincode       | 842002
+address_line1 | Government appartment, Station road near oyo hotel, Muzaffarpur, 820051, Bihar
+address_line2 | 
+created_at    | 2025-07-09 11:34:58.529676
+updated_at    | 2025-07-09 11:34:58.529676
+-[ RECORD 2 ]-+-------------------------------------------------------------------------------
+id            | 4
+first_name    | Murli
+last_name     | kumar
+email         | mmr16675@gmail.com
+mobile_num    | 8892563415
+city          | Muzaffarpur
+state         | Bihar
+pincode       | 842002
+address_line1 | Government appartment, Station road near oyo hotel, Muzaffarpur, 820051, Bihar
+address_line2 | 
+created_at    | 2025-07-09 10:41:28.299557
+updated_at    | 2025-07-09 12:05:36.72537
+

@@ -1,0 +1,7 @@
+.btn-outline-dark:hover {
+  background-color: #343a40;
+  color: white;
+}
+.table-hover tbody tr:hover {
+  background-color: #f2f2f2;
+}

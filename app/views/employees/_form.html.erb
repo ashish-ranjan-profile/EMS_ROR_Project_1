@@ -1,0 +1,128 @@
+<!-- form.object => @employee 
+     local: true => disables turbo default behavior 
+-->
+
+<div class="card mt-5 mb-4">
+  <div class="card-body">
+    <%= form_with model: @employee, local: true, data: { turbo: false } do |form| %>
+      <div class="row">
+
+        <!-- First Name -->
+        <div class="col-4">
+          <div class="form-group">
+            <%= form.label :first_name, class: "mb-2" %>
+            <%= form.text_field :first_name, class: "form-control #{'is-invalid' if form.object.errors[:first_name].any?}" %>
+            <% if form.object.errors[:first_name].any? %>
+              <small class="text-danger"><%= form.object.errors[:first_name].first %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Last Name -->
+        <div class="col-4">
+          <div class="form-group">
+            <%= form.label :last_name, class: "mb-2" %>
+            <%= form.text_field :last_name, class: "form-control #{'is-invalid' if form.object.errors[:last_name].any?}" %>
+            <% if form.object.errors[:last_name].any? %>
+              <small class="text-danger"><%= form.object.errors[:last_name].first %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div class="col-4">
+          <div class="form-group">
+            <%= form.label :email, class: "mb-2" %>
+            <%= form.text_field :email, class: "form-control #{'is-invalid' if form.object.errors[:email].any?}" %>
+            <% if form.object.errors[:email].any? %>
+              <small class="text-danger"><%= form.object.errors[:email].first %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Mobile -->
+        <div class="col-4">
+          <div class="form-group">
+            <%= form.label :mobile_num, "Mobile", class: "mb-2" %>
+            <%= form.text_field :mobile_num, class: "form-control #{'is-invalid' if form.object.errors[:mobile_num].any?}" %>
+            <% if form.object.errors[:mobile_num].any? %>
+              <small class="text-danger"><%= form.object.errors[:mobile_num].first %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- DOB using date_field -->
+        <div class="col-4">
+          <div class="form-group">
+            <%= form.label :DOB, "Date of Birth", class: "mb-2" %>
+            <%= form.date_field :DOB, class: "form-control #{'is-invalid' if form.object.errors[:DOB].any?}" %>
+            <% if form.object.errors[:DOB].any? %>
+              <small class="text-danger"><%= form.object.errors[:DOB].first %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <!--Job title-->
+        <div class="col-4">
+          <div class="form-group">
+            <%= form.label :job_title, class: "mb-2" %>
+            <%= form.text_field :job_title, class: "form-control #{'is-invalid' if form.object.errors[:job_title].any?}" %>
+            <% if form.object.errors[:job_title].any? %>
+              <small class="text-danger"><%= form.object.errors[:job_title].first %></small>
+            <% end %>
+          </div>
+        </div>
+        <!-- City -->
+        <div class="col-4">
+          <div class="form-group">
+            <%= form.label :city, class: "mb-2" %>
+            <%= form.text_field :city, class: "form-control #{'is-invalid' if form.object.errors[:city].any?}" %>
+            <% if form.object.errors[:city].any? %>
+              <small class="text-danger"><%= form.object.errors[:city].first %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- State -->
+        <div class="col-4">
+          <div class="form-group">
+            <%= form.label :state, class: "mb-2" %>
+            <%= form.text_field :state, class: "form-control #{'is-invalid' if form.object.errors[:state].any?}" %>
+            <% if form.object.errors[:state].any? %>
+              <small class="text-danger"><%= form.object.errors[:state].first %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Pincode -->
+        <div class="col-4">
+          <div class="form-group">
+            <%= form.label :pincode, class: "mb-2" %>
+            <%= form.text_field :pincode, class: "form-control #{'is-invalid' if form.object.errors[:pincode].any?}" %>
+            <% if form.object.errors[:pincode].any? %>
+              <small class="text-danger"><%= form.object.errors[:pincode].first %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Address Line 1 -->
+        <div class="col-4">
+          <div class="form-group">
+            <%= form.label :address, class: "mb-2" %>
+            <%= form.text_field :address, class: "form-control #{'is-invalid' if form.object.errors[:address].any?}" %>
+            <% if form.object.errors[:address].any? %>
+              <small class="text-danger"><%= form.object.errors[:address].first %></small>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Submit & Back Buttons -->
+        <div class="col-12 text-center mt-4">
+          <%= form.submit form.object.persisted? ? "Update Employee" : "Create Employee", class: "btn btn-success me-2" %>
+          <%= link_to "Back to Employees", employees_path, class: "btn btn-outline-primary" %>
+        </div>
+
+      </div>
+    <% end %>
+  </div>
+</div>

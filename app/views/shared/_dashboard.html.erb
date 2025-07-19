@@ -1,0 +1,48 @@
+<div class="container mb-4">
+  <h1 class="mb-4 text-teal fw-bold">📊 Dashboard</h1>
+
+  <div class="row g-4">
+    <!-- Employees Count -->
+    <div class="col-md-6 col-xl-3">
+      <%= link_to employees_path, class: "text-decoration-none text-dark" do %>
+        <div class="card shadow rounded-4 border-0 text-center p-4">
+          <h5 class="text-muted">Total Employees</h5>
+          <h2 class="fw-bold text-teal"><%= Employee.count %></h2>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Documents Count -->
+
+    <div class="col-md-6 col-xl-3">
+      <%= link_to documents_path, class: "text-decoration-none text-dark" do %>
+
+        <div class="card shadow rounded-4 border-0 text-center p-4">
+          <h5 class="text-muted">Documents Uploaded</h5>
+          <h2 class="fw-bold text-teal"><%= Document.count %></h2>
+        </div>
+      <% end %>
+
+    </div>
+
+    <!-- Add more metrics as needed -->
+    <div class="col-md-12">
+      <div class="card shadow-sm rounded-4 mt-4 p-4">
+        <h4 class="text-teal mb-3">Recent Employees</h4>
+        <ul class="list-group">
+          <% Employee.order(created_at: :desc).limit(5).each do |emp| %>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <span><%= emp.first_name %> <%= emp.last_name %></span>
+              <span class="badge bg-teal text-white rounded-pill">ID: <%= emp.id %></span>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .text-teal { color: #008080; }
+  .bg-teal { background-color: #008080; }
+</style>

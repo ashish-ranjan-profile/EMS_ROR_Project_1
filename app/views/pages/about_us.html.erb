@@ -1,0 +1,36 @@
+<div class="col-lg-10 mx-auto py-5">
+  <h1 class="text-center mb-4" data-aos="fade-down">About Our Project</h1>
+
+  <p class="text-muted" data-aos="fade-up">
+    Welcome to our <strong>Employee Management System</strong> — a full-featured web application designed to streamline employee data handling for organizations of all sizes. Built with a robust Ruby on Rails backend and a modern, responsive front-end, this system helps HR teams and managers effectively manage personnel data, documents, and job profiles with ease.
+  </p>
+
+  <p class="text-muted" data-aos="fade-up" data-aos-delay="100">
+    The core functionality includes creating, updating, and deleting employee profiles, assigning job titles, and securely attaching important documents such as IDs, resumes, and certifications. Every employee entry supports rich details like full name, email, mobile number, and custom job titles, allowing you to maintain an accurate and well-structured database.
+  </p>
+
+  <p class="text-muted" data-aos="fade-up" data-aos-delay="200">
+    One of our key strengths is the <strong>dynamic and intelligent search system</strong>. You can search employees using ID, full name, email, mobile number, or even job title — all powered by flexible PostgreSQL queries with support for partial and case-insensitive matching. This ensures HR teams spend less time searching and more time engaging.
+  </p>
+
+  <p class="text-muted" data-aos="fade-up" data-aos-delay="300">
+    In addition, we’ve implemented a <strong>one-to-many relationship</strong> between employees and their documents, allowing each employee to have multiple files associated with their profile. Our interface ensures these documents are easily uploaded, listed, and downloaded when needed.
+  </p>
+
+  <p class="text-muted" data-aos="fade-up" data-aos-delay="400">
+    The entire system is styled using Bootstrap, offering a responsive experience across devices. We've enhanced user interaction with visual cues, animations, and validations — creating a smooth, modern user experience. You’ll find features like instant feedback on search, error messages if employees aren't found, and neatly styled buttons and forms.
+  </p>
+
+  <p class="text-muted" data-aos="fade-up" data-aos-delay="500">
+    This project reflects our commitment to building scalable and maintainable software. From backend models to search optimization, every feature was carefully thought out to deliver both functionality and simplicity. Whether you're managing ten employees or ten thousand, our system is designed to adapt and grow with your organization.
+  </p>
+
+  <p class="text-muted" data-aos="fade-up" data-aos-delay="600">
+    We are continuously improving and adding more modules such as user authentication, role-based access control, advanced reporting, and integration with third-party APIs for better productivity and insights.
+  </p>
+
+  <div class="text-center mt-5" data-aos="zoom-in">
+    <%= link_to "👥 View Employees", employees_path, class: "btn btn-outline-primary px-5 py-2" %>
+    <%= link_to "➕ Add Employee", new_employee_path, class: "btn btn-success px-5 py-2 ms-3" %>
+  </div>
+</div>

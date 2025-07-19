@@ -1,0 +1,65 @@
+<h2 class="mb-4 text-center">📄 Upload New Document</h2>
+
+<%= form_with model: @document, local: true, html: { multipart: true, data: { turbo: false } } do |form| %>
+
+  <% if @document.errors.any? %>
+    <div class="alert alert-danger">
+      <h5><%= pluralize(@document.errors.count, "error") %> prohibited this document from being saved:</h5>
+      <ul class="mb-0">
+        <% @document.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <!-- Name -->
+    <div class="col-md-6 mb-3">
+      <%= form.label :name, class: "form-label fw-semibold" %>
+      <%= form.text_field :name, class: "form-control #{'is-invalid' if @document.errors[:name].any?}" %>
+      <% if @document.errors[:name].any? %>
+        <div class="invalid-feedback d-block"><%= @document.errors[:name].first %></div>
+      <% end %>
+    </div>
+
+    <!-- Document Type -->
+    <div class="col-md-6 mb-3">
+      <%= form.label :doc_type, "Document Type", class: "form-label fw-semibold" %>
+      <%= form.select :doc_type,  options_for_select(Document::DOC_TYPES, @document.doc_type), {promt: 'Select Document type'},{class: 'form-select'} %>
+      <% if @document.errors[:doc_type].any? %>
+        <div class="invalid-feedback d-block"><%= @document.errors[:doc_type].first %></div>
+      <% end %>
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <%= form.label :employee_id, "Select Employee", class: "form-label fw-semibold" %>
+
+      <%= form.select :employee_id,
+        Employee.all.map { |e| [ "#{e.name} (ID: #{e.id})", e.id ] },
+        { prompt: "Choose Employee" },
+        class: "form-select #{'is-invalid' if @document.errors[:employee_id].any?}" %>
+
+      <% if @document.errors[:employee_id].any? %>
+        <div class="invalid-feedback d-block"><%= @document.errors[:employee_id].first %></div>
+      <% end %>
+    </div>
+
+    <!-- File Upload -->
+    <div class="col-md-6 mb-4">
+      <%= form.label :file, "Attach File", class: "form-label fw-semibold" %>
+      <%= form.file_field :file, class: "form-control #{'is-invalid' if @document.errors[:file].any?}" %>
+      <% if @document.errors[:file].any? %>
+        <div class="invalid-feedback d-block"><%= @document.errors[:file].first %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="text-center mt-4">
+    <%= form.submit form.object.persisted? ? "Update Documents" : "Create Documents", class: "btn btn-primary px-5 py-2" %>
+
+    <%= link_to "← Back to Documents", documents_path, class: "btn btn-secondary" %>
+  </div>
+
+<% end %>

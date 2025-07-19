@@ -1,0 +1,32 @@
+<div class="container mt-1 mb-3">
+  <div class="card shadow-sm rounded-4">
+    <div class="card-body">
+      <h2 class="card-title mb-4">Document Details</h2>
+
+      <dl class="row">
+        <dt class="col-sm-3">Name</dt>
+        <dd class="col-sm-9"><%= @document.name %></dd>
+
+        <dt class="col-sm-3">Document Type</dt>
+        <dd class="col-sm-9"><%= @document.doc_type %></dd>
+
+        <dt class="col-sm-3">Employee</dt>
+        <dd class="col-sm-9"><%= @document.employee.name rescue "N/A" %> (ID: <%= @document.employee_id %>)</dd>
+
+        <dt class="col-sm-3">Uploaded File</dt>
+        <dd class="col-sm-9">
+          <% if @document.file.attached? %>
+            <%= link_to @document.file.filename.to_s, rails_blob_path(@document.file, disposition: "attachment"), class:"text-dark"%>
+          <% else %>
+            <span class="text-danger">No File Attached</span>
+          <% end %>
+        </dd>
+      </dl>
+
+      <div class="mt-4">
+        <%= link_to "← Back to Documents", documents_path, class: "btn btn-secondary" %>
+        <%= link_to "Edit Document", edit_document_path(@document), class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+</div>

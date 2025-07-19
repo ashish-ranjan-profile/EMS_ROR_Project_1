@@ -1,0 +1,100 @@
+<div class="container py-5">
+  <!-- Profile Header -->
+  <div class="card shadow-sm rounded-4 mb-4 p-4">
+    <div class="d-flex align-items-center gap-4">
+      <img src="https://i.pravatar.cc/100" alt="Employee Photo" class="rounded-circle border border-3 border-white shadow" width="100" height="100">
+      <div class="flex-grow-1">
+        <h4 class="mb-1 fw-bold text-teal"><%= @employee.first_name %> <%= @employee.last_name %></h4>
+        <span class="text-muted fs-6"><%= @employee.job_title %></span>
+      </div>
+      <div>
+        <%= link_to 'Edit', edit_employee_path(@employee), class: 'btn btn-sm btn-outline-primary me-2' %>
+        <%= link_to 'Delete', employee_path(@employee), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-outline-danger' %>
+      </div>
+    </div>
+  </div>
+
+  <!-- Basic Info Table -->
+  <div class="card shadow-sm rounded-4 mb-4">
+    <div class="card-body">
+      <table class="table table-borderless align-middle">
+        <tbody>
+          <tr>
+            <th>Employee ID</th>
+            <td><%= @employee.id %></td>
+            <th>Work Location</th>
+            <td><%= @employee.city %>, <%= @employee.state %></td>
+          </tr>
+          <tr>
+            <th>Date of Birth</th>
+            <td><%= @employee.DOB %></td>
+            <th>Email</th>
+            <td><%= @employee.email %></td>
+          </tr>
+          <tr>
+            <th>Mobile Number</th>
+            <td><%= @employee.mobile_num %></td>
+
+          </tr>
+          <tr>
+            <th>Address</th>
+            <td><%= @employee.address %>, <%= @employee.city %> - <%= @employee.pincode %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Document Section -->
+  <div class="card shadow-sm border-0 mt-5 rounded-4">
+    <div class="card-body px-4">
+      <h4 class="text-teal border-bottom pb-2">📎 Uploaded Documents</h4>
+
+      <% if @employee.documents.any? %>
+        <div class="table-responsive mt-3">
+          <table class="table table-bordered align-middle text-center">
+            <thead style="background-color: teal; color: white;">
+              <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>File</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @employee.documents.each do |doc| %>
+                <tr>
+                  <td><%= doc.name %></td>
+                  <td><%= doc.doc_type %></td>
+                  <td>
+                    <% if doc.file.attached? %>
+                      <%= link_to doc.file.filename.to_s, rails_blob_path(doc.file, disposition: "attachment"), class: "text-decoration-none text-teal" %>
+                    <% else %>
+                      <span class="text-danger">No File</span>
+                    <% end %>
+                  </td>
+                  <td>
+                    <%= link_to "View", document_path(doc), class: "btn btn-sm btn-outline-info me-1" %>
+                    <%= link_to "Edit", edit_document_path(doc), class: "btn btn-sm btn-outline-primary me-1" %>
+                    <%= link_to "Delete", document_path(doc), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-sm btn-outline-danger" %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <p class="text-muted mt-3">No documents uploaded for this employee.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<style>
+  .text-teal {
+    color: #008080;
+  }
+  .bg-teal {
+    background-color: #008080;
+  }
+</style>

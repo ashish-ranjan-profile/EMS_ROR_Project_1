@@ -1,0 +1,54 @@
+<div class="container py-4">
+
+  <!-- Header -->
+  <div class="text-center mb-5">
+    <h1 class="display-5 fw-bold" style="color: teal;">Welcome to Employee Management System</h1>
+    <p class="lead text-muted">A complete platform to manage employee records, documents, and actions seamlessly.</p>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-6">
+      <%= form_with url: employees_path, method: :get, local: true, class: "input-group shadow-sm" do %>
+        <%= text_field_tag :query, params[:query], class: "form-control border border-primary", placeholder: "🔍 Search employees by name, email, mobile, ID..." %>
+        <button class="btn btn-primary" type="submit">Search</button>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Feature Cards -->
+  <div class="row text-center mb-5">
+    <div class="col-md-4 mb-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title text-success">Add Employees</h5>
+          <p class="card-text">Easily create and register new employee records with job title, email, contact, and documents.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title text-info">View & Manage</h5>
+          <p class="card-text">Access the list of employees, search and filter them by ID, name, mobile number, or email.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4 mb-3">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title text-danger">Document Status</h5>
+          <p class="card-text">Check if the employee has uploaded the required documents. See status at a glance.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="text-center">
+    <%= link_to "➕ Add New Employee", new_employee_path, class: "btn btn-success btn-lg px-4 shadow-sm" %>
+  </div>
+
+</div>

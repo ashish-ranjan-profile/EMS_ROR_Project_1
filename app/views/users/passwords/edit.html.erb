@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+  <div class="card shadow-sm p-4" style="width: 100%; max-width: 450px; border-radius: 12px;">
+    <h2 class="mb-3 text-center">Change your password</h2>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "users/shared/error_messages", resource: resource %>
+      <%= f.hidden_field :reset_password_token %>
+
+      <div class="mb-3">
+        <%= f.label :password, "New password", class: "form-label" %>
+        <% if @minimum_password_length %>
+          <small class="text-muted">(<%= @minimum_password_length %> characters minimum)</small>
+        <% end %>
+        <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "form-control", placeholder: "Enter new password" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :password_confirmation, "Confirm new password", class: "form-label" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm new password" %>
+      </div>
+
+      <div class="d-grid mb-3">
+        <%= f.submit "Change my password", class: "btn btn-primary rounded-pill" %>
+      </div>
+    <% end %>
+
+    <div class="text-center">
+      <%= render "users/shared/links" %>
+    </div>
+  </div>
+</div>
