@@ -95,3 +95,7 @@
     <%= paginate @employees, class: "bg-danger bg-gradient" %>
   </div>
 <% end %>
+<!-- Export Button -->
+<div class="d-flex justify-content-center mt-2 mb-5">
+  <%= link_to "📁 Export to Excel", employees_path(format: :xlsx), class: "btn btn-outline-success" %>
+</div>

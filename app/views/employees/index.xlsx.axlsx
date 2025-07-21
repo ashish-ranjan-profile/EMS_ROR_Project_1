@@ -1,0 +1,28 @@
+wb = xlsx_package.workbook
+
+wb.add_worksheet(name: "Employees") do |sheet|
+  # Header row
+  sheet.add_row [
+    "Emp ID", "First Name", "Last Name", "Email", "Mobile",
+    "DOB", "Job Title", "City", "State", "Pincode", "Address",
+    "Document Status"
+  ]
+
+  # Data rows
+  @employees.each do |emp|
+    sheet.add_row [
+      emp.id,
+      emp.first_name,
+      emp.last_name,
+      emp.email,
+      emp.mobile_num,
+      emp.DOB&.strftime("%d-%m-%Y"),         # Format DOB if present
+      emp.job_title,
+      emp.city,
+      emp.state,
+      emp.pincode,
+      emp.address,
+      emp.documents.any? { |doc| doc.file.attached? } ? "Available" : "Not Available"
+    ]
+  end
+end

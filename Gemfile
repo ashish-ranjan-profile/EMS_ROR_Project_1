@@ -68,3 +68,4 @@ group :development do
 end
 gem "kaminari"
 # Gemfile
+gem "axlsx_rails"

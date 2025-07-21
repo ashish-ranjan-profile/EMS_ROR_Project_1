@@ -1,26 +1,38 @@
 class EmployeesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_employee, only: [ :show, :edit, :update, :destroy ]
-  def index
-   @employees = Employee.order(created_at: :desc).page(params[:page]).per(10)
-    if params[:query].present?
-       query = "%#{params[:query]}%"
-       @employees = Employee
-                .left_outer_joins(:documents)
-                .where("
-                  CAST(employees.id AS TEXT) ILIKE :q
-                  OR CONCAT(employees.first_name, ' ', employees.last_name) ILIKE :q
-                  OR employees.email ILIKE :q
-                  OR employees.mobile_num ILIKE :q
-                  OR employees.job_title ILIKE :q
-                ", q: query)
-                .distinct
-                .order(id: :desc)
-                .page(params[:page]).per(10)
-    else
-       @employees = Employee.order(id: :desc).page(params[:page]).per(10)
-    end
+def index
+  query = params[:query].to_s.strip
+
+  if query.present?
+
+    q_like = "%#{query}%"
+    q_job_title = "#{query}%"
+
+    @employees = Employee
+      .left_outer_joins(:documents)
+      .where("
+        CAST(employees.id AS TEXT) ILIKE :q
+        OR CONCAT(employees.first_name, ' ', employees.last_name) ILIKE :q
+        OR employees.email ILIKE :q
+        OR employees.mobile_num ILIKE :q
+        OR employees.job_title ILIKE :job_title
+      ", q: q_like, job_title: q_job_title)
+      .distinct
+      .order(id: :desc)
+      .page(params[:page]).per(10)
+  else
+    @employees = Employee.order(id: :desc).page(params[:page]).per(10)
   end
+
+  respond_to do |format|
+    format.html
+    format.xlsx {
+      response.headers["Content-Disposition"] = 'attachment; filename="employees.xlsx"'
+    }
+  end
+end
+
 
 
   def new

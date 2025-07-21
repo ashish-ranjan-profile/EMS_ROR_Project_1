@@ -7,6 +7,7 @@ has_many :documents, dependent: :destroy
  validates :first_name, :last_name, presence: true
  validates :email, presence: true, uniqueness: true
  validates :city, :address, :state, presence: true
+ validates :DOB, :job_title, presence: true
 
   def name
     "#{first_name} #{last_name}".strip

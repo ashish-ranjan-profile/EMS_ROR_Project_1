@@ -1,11 +1,12 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  database: myapp
+  pool: 5
+  username: postgres
+  password: ashish@123
   host: localhost
   port: 5432
-  username: postgres
-  password: root
-  pool: 5
 
 development:
   <<: *default
@@ -18,3 +19,7 @@ test:
 production:
   <<: *default
   database: myapp_production
+  username: postgres
+  password: ashish@123
+  host: localhost
+  port: 5432
