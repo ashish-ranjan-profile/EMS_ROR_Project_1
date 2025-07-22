@@ -1,20 +1,38 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
   host: localhost
   port: 5432
   username: postgres
   password: root
-  pool: 5
-
-development:
-  <<: *default
   database: myapp_development
 
 test:
   <<: *default
+  host: localhost
+  port: 5432
+  username: postgres
+  password: root
   database: myapp_test
 
 production:
-  <<: *default
-  database: myapp_production
+  primary:
+    <<: *default
+    url: <%= ENV['DATABASE_URL'] %>
+
+  queue:
+    <<: *default
+    url: <%= ENV['DATABASE_URL'] %>
+
+  cable:
+    <<: *default
+    url: <%= ENV['DATABASE_URL'] %>
+
+  cache:
+    <<: *default
+    url: <%= ENV['DATABASE_URL'] %>
